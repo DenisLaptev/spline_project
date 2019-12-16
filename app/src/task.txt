@@ -1,0 +1,54 @@
+# Tasks:
+
+# 1. Get line coordinates from Ruslan (a few lines)
+
+# 2. Try to fit (smooth data by) different types of curves
+# (each line separately, but using the same type of curve):
+# nth order polinomials, splines.
+# Would be good to check fitting quality by calculation some fitting metrics
+# (we should not apply fitting in cases when it deforms our line rather then fits to it).
+
+# 3. Save fitted curves as rasterized image (of size w640 x h360)
+# for each line (black background, fitted curve is painted by white pixels).
+# There must be a series of images, smoothed by different curves
+# ( number_of_lines x number_of_curves)
+
+# 4. For better visualization paint the same pixels as in the paragraph 3,
+# on the corresponding original images with raw lines, resized to w640 x h360.
+
+# Suggestions (in descending priority order):
+# https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html
+# https://docs.scipy.org/doc/scipy/reference/interpolate.html
+# https://docs.scipy.org/doc/scipy-0.18.1/reference/generated/scipy.interpolate.CubicSpline.html
+# (we don't want 100% interpolation, we need tools that also allow some data smoothing)
+# https://pythonhosted.org/PyModelFit/
+# https://lmfit.github.io/lmfit-py/model.html
+
+# Frames 239, 544, 594, 614, 877, 2305, 2316, 2616
+
+#####################################################################################
+
+# Привіт.
+# Подивився я кривульки. Як я і боявся, на близьких до горизонтальних лініях
+# воно не дуже.
+# Треба нова метрика.
+# Зроби метрику, яка рахує площу між червоною (згладженою)
+# і синьою (лінійно інтерпольованою) кривими.
+# З попіксельною точністю.
+# Сумарна площа оцих "островків" між ними для однієї лінії куди краща метрика,
+# як мені здається.
+
+#####################################################################################
+
+# Наступний таск - зробити python скрипт,
+# який буде парсити txt файлики в заданій папочці
+# (крім txt там можуть лежати й інші типи файлів, в основному картинки),
+# зчитувати з них лінії, згладжувати ті з них, де помилка згладжування менше 0.006%,
+# формувати список координат білих пікселів, які візуалізовувалися раніше
+# на чорно-білій картинці, і записати координати цих пікселів у нові txt файли
+# в папочці Smoothed в такому ж форматі даних, як і оригінальні txt файли.
+# Я помилився, коли давав завдання малювати білі пікселі на чорному фоні,
+# бо думав, що ця стадія фільтрації буде раніше, ніж Руслан зчитуватиме дані
+# з виходів нейронки. Тому зараз треба трохи форматнути той код, який ти написав
+# для фільтрації і запускати його батчем на папочці з результатами вже
+# після діставання даних з виходів нейронки.
